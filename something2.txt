@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
 
+
   <title>Hello world!</title>
 
 
@@ -10,53 +11,59 @@
 </head>
 <body>
 
+test2
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
-
-<div id="exercise">
-  <!-- 1) Hook up the button to toggle the display of the two paragraphs. Use both v-if and v-show and inspect the elements to see the difference -->
-  <div>
-    <button @click="show = !show">Toggle</button>
-    <p v-if="show">You either see me ...</p>
-    <p v-else>...or me</p>
-    <p v-show="show">You either see me ...</p>
-    <p v-show="!show">...or me</p>
-  </div>
-  <!-- 2) Output an <ul> of array elements of your choice. Also print the index of each element. -->
+<div id="app">
+  <p v-if="condition === 'A'">now you see me!</p>
+  <p v-else-if="condition === 'B'">i dont see you test test</p>
+  <p v-else>C!!!</p>
+  <button @click="switching">Switch</button>
+  <template v-if="show">
+    <h2>Hello world</h2>
+  </template>
+  <p v-show="show">something</p>
+  <button @click="show = !show">Switch</button>
   <ul>
-    <li v-for="(drink, i) in drinks">{{drink}} ({{i}})</li>
+    <li v-for="(ingredient, i) in ingredients">{{ ingredient }} ({{i}})</li>
   </ul>
-  <!-- 3) Print all key-value pairs of the following object: {title: 'Lord of the Rings', author: 'J.R.R. Tolkiens', books: '3'}. Also print the index of each item. -->
+  <hr />
   <ul>
-    <li v-for="el in obj">
-      <div v-for="(detail, key, i) in el">
-        <p>{{key}} : {{ detail }} ({{i}})</p>
-
+    <li v-for="person in persons">
+      <div v-for="(detail, key, i) in person">
+        {{key}} : {{detail}} ({{i}})
       </div>
     </li>
   </ul>
-  <!-- 4) Print the following object (only the values) and also create a nested loop for the array: {name: 'TESTOBJECT', data: [1.67, 1.33, 0.98, 2.21]} (hint: use v-for and v-if to achieve this) -->
-  <ul>
-    <li v-for="el in obj2">
-      <div v-for="(detail, key, i) in el">
-        <div v-if="key === 'data'">
-          <div v-for=" n in detail" >{{n}}</div>
-        </div>
-      </div>
-    </li>
-  </ul>
+  <button @click="ingredients.push('spices') ">add</button>
+  <template  v-for="(ingredient, i) in ingredients" :key="ingredient">
+    <h1>{{ingredient}}</h1>
+    <p>({{i}})</p>
+  </template>
+  <p v-for="n in 10">{{n}}</p>
 </div>
-
-
 
 <script>
   new Vue({
-    el:'#exercise',
-    data:{
+    el:'#app',
+    data: {
+      condition: 'A',
       show : true,
-      drinks:['coffe', 'tea', 'coffee'],
-      obj: [{title: 'Lord of the Rings', author: 'J.R.R. Tolkiens', books: '3'}],
-      obj2: [{name: 'TESTOBJECT', data: [1.67, 1.33, 0.98, 2.21]}]
+      ingredients:['meat', 'tea', 'chicken','soup'],
+      persons: [
+        {name: 'Karina', age:'45', sex:'f'},
+        {name: 'Candy', age:'25', sex:'f'}
+      ]
+    },
+    methods:{
+      switching(){
+        if (this.condition === 'A'){
+          this.condition = 'B'
+        } else {
+          this.condition = 'C'
+        }
+      }
+
     }
   })
 </script>

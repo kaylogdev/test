@@ -5,9 +5,11 @@
   <title>Title</title>
 tets
 
+
+
 </head>
 <body>
-
+test 1
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
 <div id="exercise">
@@ -59,7 +61,4 @@ tets
 
 </body>
 </html>
-
-
-I am here and here TEST2 and here
 
